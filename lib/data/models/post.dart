@@ -1,33 +1,20 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-Post postFromJson(String str) => Post.fromJson(json.decode(str));
+// Post postFromJson(String str) => Post.fromJson(json.decode(str));
 
-String postToJson(Post data) => json.encode(data.toJson());
+// String postToJson(Post data) => json.encode(data.toJson());
 
-class Post {
-    Post({
-        required this.userId,
-        required this.id,
-        required this.title,
-        required this.body,
-    });
+part 'post.freezed.dart';
+part 'post.g.dart';
 
-    int userId;
-    int id;
-    String title;
-    String body;
+@freezed
+class Post with _$Post {
+  factory Post({
+    required int userId,
+    required int id,
+    required String title,
+    required String body,
+  }) = _Post;
 
-    factory Post.fromJson(Map<String, dynamic> json) => Post(
-        userId: json["userId"],
-        id: json["id"],
-        title: json["title"],
-        body: json["body"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "userId": userId,
-        "id": id,
-        "title": title,
-        "body": body,
-    };
+  factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 }
