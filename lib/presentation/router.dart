@@ -1,4 +1,8 @@
+import 'package:cubit_test/cubit/product_cubit.dart';
 import 'package:cubit_test/data/post_network_service.dart';
+import 'package:cubit_test/data/product/product_network_service.dart';
+import 'package:cubit_test/data/product/product_repository.dart';
+import 'package:cubit_test/presentation/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +16,15 @@ class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case "/":
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) =>
+                ProductCubit(repository: ProductRepository(service: ProductNetworkService())),
+            child: const ProductScreen(),
+          ),
+        );
+
+      case "/a":
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (BuildContext context) =>

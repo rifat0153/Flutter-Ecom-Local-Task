@@ -31,11 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^7.3.0
-  freezed:
+  freezed_annotation: ^1.0.0
   http: ^0.13.4
   json_serializable:
 
 dev_dependencies:
+  freezed:
   build_runner: ^2.1.5
   flutter_lints: ^1.0.0
   flutter_test:
