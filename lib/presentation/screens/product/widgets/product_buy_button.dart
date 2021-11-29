@@ -18,7 +18,7 @@ class ProductBuyButtonWidget extends StatelessWidget {
       child: MaterialButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('${product!.product_name} added to card'),
+            content: Text('${product!.product_name} added to cart'),
           ));
         },
         color: Colors.blue,
