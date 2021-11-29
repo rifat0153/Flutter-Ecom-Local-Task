@@ -1,8 +1,10 @@
 import 'package:cubit_test/cubit/product_cubit.dart';
+import 'package:cubit_test/data/models/product.dart';
 import 'package:cubit_test/data/post_network_service.dart';
 import 'package:cubit_test/data/product/product_network_service.dart';
 import 'package:cubit_test/data/product/product_repository.dart';
-import 'package:cubit_test/presentation/screens/product_screen.dart';
+import 'package:cubit_test/presentation/screens/product/product_detail_screen.dart';
+import 'package:cubit_test/presentation/screens/product/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,19 @@ class AppRouter {
             create: (BuildContext context) =>
                 ProductCubit(repository: ProductRepository(service: ProductNetworkService())),
             child: const ProductScreen(),
+          ),
+        );
+
+      case ProductDetailScreen.route:
+        final args = settings.arguments as Product;
+
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) =>
+                ProductCubit(repository: ProductRepository(service: ProductNetworkService())),
+            child:  ProductDetailScreen(
+              product: args,
+            ),
           ),
         );
 
